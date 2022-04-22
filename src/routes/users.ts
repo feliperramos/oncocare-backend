@@ -22,9 +22,6 @@ router.post("/users", [], async (req: Request, res: Response) => {
   const { email, password, name } = req.body;
 
   try {
-    if (await User.findOne({ email }))
-      return res.status(400).send({ error: "User not found" });
-
     const user = User.build({ email, password, name });
     await user.save();
 
