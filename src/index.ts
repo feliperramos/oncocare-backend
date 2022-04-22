@@ -12,7 +12,7 @@ app.use(json());
 app.use(Routes);
 
 const mongoURI: string = process.env.MONGO_URI!;
-const serverPort: string = process.env.SERVER_PORT!;
+const serverPort: string = process.env.PORT!;
 
 mongoose.connect(
   mongoURI,
