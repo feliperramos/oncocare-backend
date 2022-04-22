@@ -1,9 +1,13 @@
 import jwt from "jsonwebtoken";
 
-import AuthConfig from "../config/auth.json";
+import * as dotenv from "dotenv";
+
+dotenv.config();
+
+const AuthKey: string = process.env.AUTH_SECRET_KEY!;
 
 export const GetToken = (params: Object = {}) => {
-  return jwt.sign({ params }, AuthConfig.secret, {
+  return jwt.sign({ params }, AuthKey, {
     expiresIn: 86400,
   });
 };

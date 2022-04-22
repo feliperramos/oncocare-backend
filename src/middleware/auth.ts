@@ -1,8 +1,13 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import AuthConfig from "../config/auth.json";
+
+import * as dotenv from "dotenv";
 
 import { User } from "../models/users";
+
+dotenv.config();
+
+const AuthKey: string = process.env.AUTH_SECRET_KEY || "";
 
 export const Authentication = async (
   req: Request,
@@ -22,7 +27,7 @@ export const Authentication = async (
 
   let decoded: any;
   try {
-    decoded = jwt.verify(token, AuthConfig.secret);
+    decoded = jwt.verify(token, AuthKey);
   } catch (err) {
     console.log(err);
   }

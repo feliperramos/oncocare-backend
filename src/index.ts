@@ -12,6 +12,7 @@ app.use(json());
 app.use(Routes);
 
 const mongoURI: string = process.env.MONGO_URI!;
+const serverPort: string = process.env.SERVER_PORT!;
 
 mongoose.connect(
   mongoURI,
@@ -23,6 +24,6 @@ mongoose.connect(
   },
 );
 
-app.listen(3000, () => {
-  console.log("listening on port 3000");
+app.listen(serverPort, () => {
+  console.log(`listening on port ${serverPort}`);
 });
