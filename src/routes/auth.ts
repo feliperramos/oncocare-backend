@@ -9,18 +9,22 @@ const router = express.Router();
 router.post("/auth", [], async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
-  const user = await User.findOne({ email }).select("+password");
+  try {
+    const user = await User.findOne({ email }).select("+password");
 
-  console.log("user", user);
+    console.log("user", user);
 
-  if (!user) return res.status(400).json({ error: "User not found" });
+    if (!user) return res.status(400).json({ error: "User not found" });
 
-  if (!(await bcrypt.compare(password, user.password)))
-    return res.status(400).send({ error: "Invalid password" });
+    if (!(await bcrypt.compare(password, user.password)))
+      return res.status(400).send({ error: "Invalid password" });
 
-  user.password = "";
+    user.password = "";
 
-  res.status(200).json({ user, token: GetToken(user) });
+    res.status(200).json({ user, token: GetToken(user) });
+  } catch (error) {
+    res.status(404).json({ error });
+  }
 });
 
 export { router as AuthRouter };
