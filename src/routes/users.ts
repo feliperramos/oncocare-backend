@@ -27,6 +27,7 @@ router.post("/users", [], async (req: Request, res: Response) => {
 
     const UserToken = await User.findOne({ email });
 
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const token = GetToken(UserToken!);
 
     user.password = undefined;

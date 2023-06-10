@@ -1,11 +1,12 @@
 {
   "name": "oncocare-backend",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Backend of Oncocare app",
   "main": "src/index.ts",
   "repository": "https://github.com/feliperramos/oncocare-backend.git",
   "author": "Felipe Ramos",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "start": "node dist/index.js",
     "dev": "ts-node-dev src/index.ts",
