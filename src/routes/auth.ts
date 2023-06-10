@@ -25,6 +25,7 @@ router.post("/auth", [], async (req: Request, res: Response) => {
 
     res.status(200).json({ user, token: GetToken(user) });
   } catch (error) {
+    console.error(error);
     res.status(404).json({ error });
   }
 });
