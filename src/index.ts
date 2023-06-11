@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import { json } from "body-parser";
 import * as dotenv from "dotenv";
 
+import "./config/mongooseTimeout";
 import { Routes } from "./routes";
 
 dotenv.config();
