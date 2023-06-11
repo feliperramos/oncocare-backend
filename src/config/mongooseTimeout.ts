@@ -1,13 +1,12 @@
 import mongoose from "mongoose";
 
-// Intercept and modify findOne() operations
-mongoose.Query.prototype.findOne = function (...args) {
-  // Set the timeout value (in milliseconds)
-  const timeout = 30000; // 30 seconds
+const originalFindOne = mongoose.Query.prototype.findOne;
 
-  // Apply the timeout to the findOne() operation
+mongoose.Query.prototype.findOne = function (...args) {
+  const timeout = 30000;
+
   this.maxTimeMS(timeout);
 
-  // Call the original findOne() method with the modified arguments
-  return this.findOne(...args);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return originalFindOne.apply(this, args as [any, any?]);
 };
