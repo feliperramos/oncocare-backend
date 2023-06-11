@@ -15,15 +15,12 @@ app.use(Routes);
 const mongoURI: string = process.env.MONGO_URI!;
 const serverPort: string = process.env.PORT!;
 
-mongoose.connect(
-  mongoURI,
-  {
+mongoose
+  .connect(mongoURI, {
     autoIndex: true,
-  },
-  () => {
-    console.log("connect to mongodb!");
-  },
-);
+  })
+  .then(() => console.log("Connect to MongoDB Server!"))
+  .catch(err => console.error(err));
 
 app.listen(serverPort, () => {
   console.log(`listening on port ${serverPort}`);
