@@ -23,5 +23,5 @@ mongoose
   .catch(err => console.error(err));
 
 app.listen(serverPort, () => {
-  console.log(`listening on port ${serverPort}`);
+  console.log(`Oncocare App is now live on port ${serverPort}!!! 🚀🚀`);
 });
