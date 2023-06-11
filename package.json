@@ -15,6 +15,7 @@
     "heroku-postbuild": "tsc --build"
   },
   "dependencies": {
+    "@types/node": "^20.3.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.20.0",
     "dotenv-safe": "^8.2.0",
