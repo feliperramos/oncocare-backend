@@ -19,12 +19,12 @@ router.post("/forgot-password", [], async (req: Request, res: Response) => {
 
     //expires token
     const now = new Date();
-    now.setHours(now.getHours() + 1);
+    const expires = now.setHours(now.getHours() + 1);
 
     await User.findByIdAndUpdate(user.id, {
       $set: {
         passwordResetToken: token,
-        passwordResetExpires: now,
+        passwordResetExpires: expires,
       },
     });
 
