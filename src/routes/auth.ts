@@ -12,7 +12,7 @@ router.post("/auth", [], async (req: Request, res: Response) => {
   try {
     const user = await User.findOne({ email })
       .select("+password")
-      .maxTimeMS(20000);
+      .maxTimeMS(30000);
 
     console.log("user", user);
 
