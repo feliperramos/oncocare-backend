@@ -15,6 +15,8 @@ interface UserDoc extends mongoose.Document {
   email: string;
   password: string;
   name: string;
+  passwordResetToken?: string;
+  passwordResetExpires?: Date;
 }
 
 const userSchema = new mongoose.Schema({

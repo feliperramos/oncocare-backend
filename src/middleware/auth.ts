@@ -36,7 +36,7 @@ export const Authentication = async (
     return res.status(401).json({ error: "Token Invalid" });
   }
 
-  const users = await User.findOne({ id: decoded?.params?._id });
+  const users = await User.findById(decoded?.params?._id);
 
   if (users) {
     return next();

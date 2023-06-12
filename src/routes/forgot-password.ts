@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
-import crypto from "crypto";
+
+import { getRandomNumberWithSixDigits } from "../utils/getRandomNumberWithSixDigits";
 
 import mailer from "../config/mailer";
 
@@ -15,9 +16,8 @@ router.post("/forgot-password", [], async (req: Request, res: Response) => {
 
     if (!user) return res.status(400).json({ error: "User not found" });
 
-    const token = crypto.randomBytes(16).toString("hex");
+    const token = getRandomNumberWithSixDigits();
 
-    //expires token
     const now = new Date();
     const expires = now.setHours(now.getHours() + 1);
 
@@ -42,7 +42,10 @@ router.post("/forgot-password", [], async (req: Request, res: Response) => {
       },
     );
 
-    console.log(token, now);
+    res.status(200).json({
+      token,
+      message: `Reset your password with this code: ${token}`,
+    });
   } catch (err) {
     res.status(400).json({ error: "Error on forgot password, try again" });
   }

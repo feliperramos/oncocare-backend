@@ -14,8 +14,6 @@ router.post("/auth", [], async (req: Request, res: Response) => {
       .select("+password")
       .maxTimeMS(30000);
 
-    console.log("user", user);
-
     if (!user) return res.status(400).json({ error: "User not found" });
 
     if (!(await bcrypt.compare(password, user.password)))

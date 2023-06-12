@@ -3,6 +3,7 @@ import express, { Request, Response } from "express";
 import { UserRouter } from "./users";
 import { AuthRouter } from "./auth";
 import { ForgotPasswordRouter } from "./forgot-password";
+import { ResetPasswordRouter } from "./reset-password";
 
 import { Authentication } from "../middleware/auth";
 
@@ -18,6 +19,7 @@ router.get("/", [], async (req: Request, res: Response) => {
 app.use("/api", UserRouter);
 app.use("/api", AuthRouter);
 app.use("/api", ForgotPasswordRouter);
+app.use("/api", ResetPasswordRouter);
 app.use(router);
 
 export { app as Routes };
